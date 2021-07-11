@@ -1,4 +1,3 @@
-// pages/posts/[id].js
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,8 +5,6 @@ import Link from 'next/link'
 function Pokemon({ pokemon }) {
   const router = useRouter()
 
-  // If the page is not yet generated, this will be displayed
-  // initially until getStaticProps() finishes running
   if (router.isFallback) {
     return <div>Loading...</div>
   }
