@@ -1,6 +1,7 @@
 // pages/posts/[id].js
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function Pokemon({ pokemon }) {
   const router = useRouter()
@@ -13,8 +14,9 @@ function Pokemon({ pokemon }) {
 
   return (
     <>
+      <Link href="/pokemon"><a>back</a></Link>
       <h1>{pokemon.name}</h1>
-      <Image src={pokemon.sprites.front_default} alt={pokemon.name} width={125} height={125} />
+      <Image src={pokemon.sprites.front_default} alt={pokemon.name} width={150} height={150} />
     </>
   )
 }
@@ -37,7 +39,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.name}`)
-  const pokemon = await res.json()
+  const pokemon = await res.json();
 
   return {
     props: { pokemon },
