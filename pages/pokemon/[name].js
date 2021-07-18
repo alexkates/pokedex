@@ -1,14 +1,7 @@
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 
 function Pokemon({ pokemon }) {
-  const router = useRouter()
-
-  if (router.isFallback) {
-    return <div>Loading...</div>
-  }
-
   return (
     <>
       <Link href="/pokemon"><a>back</a></Link>
@@ -18,29 +11,12 @@ function Pokemon({ pokemon }) {
   )
 }
 
-export async function getStaticPaths() {
-  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
-  const pokemon = await res.json();
-
-  const paths = pokemon.results.map(p => ({
-    params: {
-      name: p.name
-    }
-  }));
-
-  return {
-    paths,
-    fallback: true,
-  }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.name}`)
   const pokemon = await res.json();
 
   return {
     props: { pokemon },
-    revalidate: 1,
   }
 }
 

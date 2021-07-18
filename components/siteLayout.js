@@ -2,15 +2,19 @@ import Link from 'next/link';
 
 function SiteLayout({ children }) {
   return (
-    <>
-      <nav className="flex justify-end">
-        <Link href="/"><a className="ml-4">Home</a></Link>
-        <Link href="/pokemon"><a className="ml-4">Pokemon</a></Link>
+    <div className="container mx-auto px-4">
+      <nav className="flex justify-between m-4">
+        <div>
+          <Link href="/"><a className="ml-4">Home</a></Link>
+        </div>
+        <div>
+          <Link href="/pokemon"><a className="ml-4">Pokemon</a></Link>
+        </div>
       </nav>
-      <section className="container mx-auto px-4">
+      <section className="mt-4">
         {children}
       </section>
-    </>
+    </div>
   );
 }
 

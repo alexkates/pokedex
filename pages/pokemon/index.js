@@ -1,30 +1,30 @@
-import Link from 'next/link';
+import PokemonList from "../../components/pokemonList";
+import { useRouter } from 'next/router'
 
-function Index({ pokemon }) {
+const LIMIT = 20;
+
+function Index({ results, count, previous, next }) {
+  const router = useRouter();
+
   return (
-    <>
-      <ul>
-        {
-          pokemon.results.map(p => (
-            <li key={p.name}>
-              <Link href={`/pokemon/${p.name}`}>
-                <a>{p.name}</a>
-              </Link>
-            </li>
-          ))
-        }
-      </ul>
-    </>
+    <div>
+      <PokemonList pokemon={results} />
+      <div className="flex justify-between mt-4">
+        {previous && <button onClick={() => router.push(`/pokemon?page=${previous}`)}>Previous</button>}
+        {next && <button onClick={() => router.push(`/pokemon?page=${next}`)}>Next</button>}
+      </div>
+    </div>
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1220`)
-  const pokemon = await res.json();
+export async function getServerSideProps({ query }) {
+  console.log(query);
+  const res = await fetch(query.page || `https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}&offset=0`)
+  const props = await res.json();
+  console.log(props);
 
   return {
-    props: { pokemon },
-    revalidate: 1,
+    props,
   }
 }
 
