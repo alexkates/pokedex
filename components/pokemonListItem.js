@@ -2,11 +2,9 @@ import Link from 'next/link';
 
 function PokemonItem({ pokemon }) {
   return (
-    <div className="flex max-h-10">
-      <Link href={`/pokemon/${pokemon.name}`}>
-        <a>{pokemon.name}</a>
-      </Link>
-    </div>
+    <Link href={`/pokemon/${pokemon.name}`}>
+      <a className="flex bg-gray-100 border-2 hover:bg-blue-100 focus:bg-blue-100 px-4 min-w-min w-3/4 h-16 justify-center items-center rounded-md text-xl">{pokemon.name}</a>
+    </Link>
   )
 };
 

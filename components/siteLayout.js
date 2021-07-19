@@ -11,7 +11,7 @@ function SiteLayout({ children }) {
           <Link href="/pokemon"><a className="ml-4">Pokemon</a></Link>
         </div>
       </nav>
-      <section className="mt-4">
+      <section className="my-8">
         {children}
       </section>
     </div>

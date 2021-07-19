@@ -2,7 +2,7 @@ import PokemonList from "../../components/pokemonList";
 import { useRouter } from 'next/router'
 import ReactPaginate from 'react-paginate';
 
-const LIMIT = 20;
+const LIMIT = 24;
 
 function Index({ results, count }) {
   const router = useRouter();
@@ -11,7 +11,7 @@ function Index({ results, count }) {
     <div>
       <PokemonList pokemon={results} />
       <ReactPaginate
-        containerClassName="flex justify-center"
+        containerClassName="flex justify-center mt-8"
         pageLinkClassName="p-2"
         previousLabel="<"
         nextLabel=">"
